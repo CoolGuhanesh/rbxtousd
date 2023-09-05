@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Robux Converter</title>
+    <style>
+        /* Load the Lemon Milk font */
+        @font-face {
+            font-family: 'LemonMilk';
+            src: url('path-to-lemon-milk-font.woff2') format('woff2');
+            /* Add additional font formats (e.g., woff, ttf) if necessary */
+        }
+
+        body {
+            background-color: rgba(0, 128, 0, 0.2); /* Faded green background color */
+            margin: 0;
+            font-family: 'LemonMilk', sans-serif; /* Apply Lemon Milk font */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Logo style for top center */
+        .top-logo {
+            max-width: 150px; /* Increase the maximum width for the top logo */
+            margin-top: 20px; /* Adjust the distance from the top */
+        }
+
+        .calculator-container {
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            animation: fade-in 1s ease; /* Add fade-in animation */
+            margin-top: 20px; /* Add margin to create space for the top logo */
+            margin-bottom: 20px; /* Add margin to create space for the bottom logo */
+            transition: transform 0.2s ease; /* Add hover effect */
+        }
+
+        /* Define the fade-in animation */
+        @keyframes fade-in {
+            from {
+                opacity: 0; /* Start with 0 opacity */
+            }
+            to {
+                opacity: 1; /* End with full opacity */
+            }
+        }
+
+        /* Add hover effect for the calculator container */
+        .calculator-container:hover {
+            transform: scale(1.05); /* Increase size on hover */
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+            transition: font-size 0.2s ease, color 0.2s ease; /* Add hover effects */
+        }
+
+        h1:hover {
+            font-size: 26px; /* Increase font size on hover */
+            color: #000; /* Change text color on hover */
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+            transition: font-size 0.2s ease, color 0.2s ease; /* Add hover effects */
+        }
+
+        p:hover {
+            font-size: 18px; /* Increase font size on hover */
+            color: #000; /* Change text color on hover */
+        }
+
+        strong {
+            font-weight: bold; /* Make the text inside <strong> tags bold */
+        }
+
+        input[type="number"] {
+            width: 60px; /* Make the input box smaller */
+            padding: 5px; /* Adjust padding for a smaller box */
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        /* Style the buttons with faded green background */
+        .conversion-button {
+            background-color: rgba(0, 128, 0, 0.5); /* Faded green background color */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-right: 10px; /* Add some spacing between buttons */
+            transition: background-color 0.2s ease, opacity 0.2s ease; /* Add hover effects */
+            opacity: 0.8; /* Reduced opacity */
+        }
+
+        .conversion-button:hover {
+            background-color: rgba(0, 128, 0, 0.7); /* Darker green on hover */
+            opacity: 1; /* Full opacity on hover */
+        }
+
+        #result {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+            font-weight: bold; /* Make the answer bold */
+        }
+
+        /* Logo style for bottom center */
+        .bottom-logo {
+            max-width: 80px; /* Decrease the maximum width for the bottom logo */
+            margin-bottom: 100px; /* Adjust the distance from the bottom */
+        }
+
+        /* Copyright notice at the bottom */
+        .copyright {
+            font-size: 16px; /* Medium-sized text */
+            color: #333;
+            margin-bottom: 30px; /* Adjust the distance from the bottom */
+        }
+
+        /* Style the copyright link */
+        .copyright a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .copyright a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact button style */
+        .contact-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 128, 0, 0.5); /* Faded green background color */
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px; /* Increase font size for a larger button */
+            padding: 10px 20px; /* Increase padding for a larger button */
+            border-radius: 5px; /* Add border radius for rounded corners */
+            transition: background-color 0.2s ease, opacity 0.2s ease; /* Add hover effects */
+            opacity: 0.8; /* Reduced opacity */
+        }
+
+        .contact-button:hover {
+            background-color: rgba(0, 128, 0, 0.7); /* Darker green on hover */
+            opacity: 1; /* Full opacity on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Contact button in the top corner -->
+    <button class="contact-button" onclick="contactMe()">Contact</button>
+
+    <!-- Logo at the top center -->
+    <img src="C:\Users\guhan\Downloads\Robux to USD.png" alt="Top Logo" class="top-logo">
+
+    <div class="calculator-container">
+        <h1>Robux Converter</h1>
+        <p>Convert between USD and <strong>Amount:</strong></p>
+        
+        <input type="number" id="amount" name="amount" min="0">
+        
+        <!-- Use buttons for conversion options -->
+        <button class="conversion-button" onclick="convertToRobux()">USD to Robux</button>
+        <button class="conversion-button" onclick="convertToUSD()">Robux to USD</button>
+        
+        <p id="result"></p>
+    </div>
+
+    <!-- Logo at the bottom center -->
+    <img src="C:\Users\guhan\Downloads\logo.png" alt="Bottom Logo" class="bottom-logo">
+
+    <div class="copyright">
+       Developed by <a href="http://coolsuitega123.c1.biz/" target="_blank">Cooldevga</a>
+    </div>
+
+    <script>
+        function convertToRobux() {
+            const amount = parseFloat(document.getElementById("amount").value);
+            const robuxRate = 80; // Change this rate to the current exchange rate
+            const robux = amount * robuxRate;
+            document.getElementById("result").innerHTML = `${amount} USD is equal to ${robux} Robux.`;
+        }
+
+        function convertToUSD() {
+            const amount = parseFloat(document.getElementById("amount").value);
+            const robuxRate = 80; // Change this rate to the current exchange rate
+            const usd = amount / robuxRate;
+            document.getElementById("result").innerHTML = `${amount} Robux is equal to $${usd.toFixed(2)} USD.`;
+        }
+
+        // Function to display contact message
+        function contactMe() {
+            alert("Hello! Thanks for reaching out!\n\nFor personal and business inquiries, mail me at gamedevga@gmail.com");
+        }
+    </script>
+</body>
+</html>
